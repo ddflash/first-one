@@ -1,0 +1,25 @@
+import time
+import random as rd
+bag=[]
+for i in range(26):
+    bag.append(chr(ord('a')+i))
+num=int(input("Hardness\n"))
+while 1:
+    s=[]
+    for i in range(num):
+        n=bag[rd.randint(0,25)]
+        print(n,end='')
+        s.append(n)
+    print("\n")
+    k1=time.time()
+    a=input()
+    k2=time.time()
+    print("time:"+str(k2-k1))
+    tr=0
+    for i in range(min(len(s),len(a))):
+        if a[i]==s[i]:
+            tr+=1
+    if len(s)-tr==0:
+        print("true!")
+    else:
+        print("wrong "+str(len(s)-tr)+" / "+str(len(s)))

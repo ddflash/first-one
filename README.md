@@ -1,30 +1,50 @@
-# first-one
+t=int(input())
+p=[]
+q=[]
+def check(s):
+    a=[]
+    num=0
+    dian=0
+    for i in s:
+        if i=='.':
+            dian+=1
+            a.append(num)
+        elif i==':':
+            if dian!=3:
+                return False
+            else:
+                a.append(num)
+        elif i>='0' and i<='9':
+            num=num*10+int(i)
+        else:
+            return False
+    for i in a:
+        if i>=256:
+            return False
+    if num>=65536:
+        return False
+    return True
 
-#include<bits/stdc++.h>
-#include<windows.h>
-using namespace std;
-int main()
-{
-	int x,a;
-	srand((unsigned int)time(NULL));
-	x=rand()%1000+1;
-	int t=1,w=0;
-	while(t)
-	{
-		if(w==11)
-		{
-			cout<<"you lose";
-			return 0;
-		}
-		cin>>a;
-		w++;
-		if(a==x)
-		t=0;
-		if(a<x)
-		cout<<"small"<<endl;
-		if(a>x)
-		cout<<"big"<<endl;
-	}
-	cout<<"you win!"<<endl;
-	cout<<"you guess "<<w<<" times";
-}
+
+for tt in range(t):
+    s=input()
+    if s[0]=='S':
+        s=s[7:] 
+        f=check(s)
+        if f==False:
+            print("ERR")
+        else:
+            print("OK")
+            p.append(s)
+            q.append(0)
+    else:
+        s=s[7:]
+        f=check(s)
+        if f==False:
+            print("ERR")
+        elif s in p:
+            now=p.find(s)
+            q[now]+=1
+            print(q[now])
+        else:
+            print("FAIL")

@@ -1,25 +1,42 @@
-import time
-import random as rd
-bag=[]
-for i in range(26):
-    bag.append(chr(ord('a')+i))
-num=int(input("Hardness\n"))
-while 1:
-    s=[]
-    for i in range(num):
-        n=bag[rd.randint(0,25)]
-        print(n,end='')
-        s.append(n)
-    print("\n")
-    k1=time.time()
-    a=input()
-    k2=time.time()
-    print("time:"+str(k2-k1))
-    tr=0
-    for i in range(min(len(s),len(a))):
-        if a[i]==s[i]:
-            tr+=1
-    if len(s)-tr==0:
-        print("true!")
-    else:
-        print("wrong "+str(len(s)-tr)+" / "+str(len(s)))
+n,p,q=map(int,input().split())
+z=[]
+t=[1]*(n+1)
+def zhishu(kkka):
+    t[0],t[1]=0,0
+    for i in range(2,n+1):
+        if t[i]:
+            for j in range(2,n//i+1):
+                t[j*i]=0
+    for i in range(n+1):
+        if t[i]:
+            z.append(i)
+def fenjie(k):
+    p=[]
+    for i in range(len(z)):
+        if k==1:
+            return p
+        if t[k]:
+            p.append(k)
+            return p
+        if k%z[i]==0:
+            p.append(z[i])
+            while k%z[i]==0:
+                k=k//z[i]
+
+m=2**32
+zhishu(0)
+v=[0]*n
+for i in range(p):
+    s,x=map(int,input().split())
+    now=fenjie(s)
+    for h in now:
+        v[h]=(v[h]+x)%m
+for cz in range(q):
+    
+    s=int(input())
+    now=fenjie(s)
+    for i in now:
+
+        
+
+    
